@@ -6,9 +6,18 @@ import FirstLineCharts from "../charts/FirstLineCharts";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from "@material-ui/core/Grid";
+import {withStyles} from "@material-ui/core/styles";
+
+const styles = theme => ({
+    grayCard: {
+        backgroundColor: '#666',
+        margin: 10,
+    },
+});
 
 class FirstPage extends React.Component {
     render() {
+        const {classes} = this.props;
         const data = [
             {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
             {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
@@ -20,24 +29,26 @@ class FirstPage extends React.Component {
         ];
 
         return (
-            <Grid container spacing={8} direction="row" justify="center" alignItems="center">
-                <Grid item xs={6}>
-                    <Card>
-                        <CardContent>
-                            <FirstLineCharts data={data}/>
-                        </CardContent>
-                    </Card>
+            <div>
+                <Grid container spacing={8} direction="row" justify="center" alignItems="center">
+                    <Grid item xs={6}>
+                        <Card className={classes.grayCard}>
+                            <CardContent>
+                                <FirstLineCharts data={data}/>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Card className={classes.grayCard}>
+                            <CardContent>
+                                <FirstLineCharts data={data}/>
+                            </CardContent>
+                        </Card>
+                    </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                    <Card>
-                        <CardContent>
-                            <FirstLineCharts data={data}/>
-                        </CardContent>
-                    </Card>
-                </Grid>
-            </Grid>
+            </div>
         );
     }
 }
 
-export default FirstPage;
+export default withStyles(styles)(FirstPage);
