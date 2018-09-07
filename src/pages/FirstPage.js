@@ -30,7 +30,21 @@ class FirstPage extends React.Component {
 
         return (
             <div>
-                <Grid container spacing={8} direction="row" justify="center" alignItems="center">
+                <Grid container spacing={4} direction="row" justify="center" alignItems="center">
+                    <Grid item xs={6}>
+                        <Card className={classes.grayCard}>
+                            <CardContent>
+                                <FirstLineCharts data={data}/>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Card className={classes.grayCard}>
+                            <CardContent>
+                                <FirstLineCharts data={data}/>
+                            </CardContent>
+                        </Card>
+                    </Grid>
                     <Grid item xs={6}>
                         <Card className={classes.grayCard}>
                             <CardContent>
