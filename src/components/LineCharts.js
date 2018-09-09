@@ -4,16 +4,9 @@
 import React from 'react';
 import {LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip} from 'recharts';
 import {withStyles} from "@material-ui/core/styles";
+import ChartsStyle from '../css/ChartsStyle';
 
-const styles = theme => ({
-    grayBack: {
-        flexGrow: 1,
-        backgroundColor: '#666',
-        marginTop: 5, marginRight: 20, bmarginBottom: 5, marginLeft: 0
-    },
-});
-
-class FirstLineCharts extends React.Component {
+class LineCharts extends React.Component {
     render() {
         const {classes} = this.props;
         return (
@@ -29,4 +22,4 @@ class FirstLineCharts extends React.Component {
     }
 }
 
-export default withStyles(styles)(FirstLineCharts);
+export default withStyles(ChartsStyle)(LineCharts);

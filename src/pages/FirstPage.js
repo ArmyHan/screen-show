@@ -2,7 +2,7 @@
  * Create by wujianchuan 2018/9/6
  */
 import React from 'react';
-import FirstLineCharts from "../charts/FirstLineCharts";
+import LineCharts from "../components/LineCharts";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from "@material-ui/core/Grid";
@@ -30,32 +30,11 @@ class FirstPage extends React.Component {
 
         return (
             <div>
-                <Grid container spacing={4} direction="row" justify="center" alignItems="center">
+                <Grid container spacing={4}  direction="row" justify="center" alignItems="center">
                     <Grid item xs={6}>
                         <Card className={classes.grayCard}>
                             <CardContent>
-                                <FirstLineCharts data={data}/>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Card className={classes.grayCard}>
-                            <CardContent>
-                                <FirstLineCharts data={data}/>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Card className={classes.grayCard}>
-                            <CardContent>
-                                <FirstLineCharts data={data}/>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Card className={classes.grayCard}>
-                            <CardContent>
-                                <FirstLineCharts data={data}/>
+                                <LineCharts data={data}/>
                             </CardContent>
                         </Card>
                     </Grid>

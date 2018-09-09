@@ -3,11 +3,15 @@
  */
 import React from 'react';
 import FirstPage from "./pages/FirstPage";
+import Navigation from "./components/Navigation";
 
 class App extends React.Component {
     render() {
         return (
-            <FirstPage/>
+            <div>
+                <FirstPage/>
+                <Navigation/>
+            </div>
         );
     }
 }
