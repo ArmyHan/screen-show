@@ -22,7 +22,7 @@ class Navigation extends React.Component {
     componentDidMount() {
         this.timerID = setInterval(
             () => this.next(),
-            10000
+            5000
         );
     }
 
