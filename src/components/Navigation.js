@@ -13,9 +13,11 @@ import NavigationStyle from '../style/NavigationStyle';
 
 class Navigation extends React.Component {
 
-    state = {
-        index: 0,
-    };
+    constructor(props) {
+        super(props);
+        this.state = {index: 0};
+        this.handleChange = this.handleChange.bind(this);
+    }
 
     componentDidMount() {
         this.timerID = setInterval(
@@ -29,12 +31,13 @@ class Navigation extends React.Component {
     }
 
     next() {
-        this.setState(prevState => ({index: prevState.index === 2 ? 0 : prevState.index + 1}));
+        this.setState(prevState => ({index: prevState.index === 2 ? this.props.action(0) : this.props.action(prevState.index + 1)}));
     }
 
 
-    handleChange = (event, value) => {
-        this.setState({value});
+    handleChange(event, value) {
+        this.setState({index: value});
+        this.props.action(value);
     };
 
     render() {

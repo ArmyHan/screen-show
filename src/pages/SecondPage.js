@@ -24,7 +24,7 @@ const styles = theme => ({
     },
 });
 
-class FirstPage extends React.Component {
+class SecondPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {data: [{}]};
@@ -77,10 +77,17 @@ class FirstPage extends React.Component {
                             </CardContent>
                         </Card>
                     </Grid>
+                    <Grid item xs={6}>
+                        <Card className={classes.grayCard}>
+                            <CardContent>
+                                <LineCharts data={data}/>
+                            </CardContent>
+                        </Card>
+                    </Grid>
                 </Grid>
             </div>
         );
     }
 }
 
-export default withStyles(styles)(FirstPage);
+export default withStyles(styles)(SecondPage);
