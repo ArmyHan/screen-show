@@ -10,6 +10,8 @@ import {withStyles} from "@material-ui/core/styles";
 import ScreenProperties from '../data/ScreenProperties';
 import Button from '@material-ui/core/Button';
 import getToken from '../utils/getToken';
+import Paper from "@material-ui/core/Paper";
+import Slide from "@material-ui/core/Slide";
 
 const styles = theme => ({
     grayCard: {
@@ -27,7 +29,7 @@ const styles = theme => ({
 class SecondPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {data: [{}]};
+        this.state = {data: [{}], show: false,};
         this.setData = this.setData.bind(this);
     }
 
@@ -37,6 +39,7 @@ class SecondPage extends React.Component {
             () => this.setData(),
             100000
         );
+        this.setState({show: true})
     }
 
     componentWillUnMount() {
@@ -65,27 +68,30 @@ class SecondPage extends React.Component {
 
     render() {
         const {classes} = this.props;
-        const data = this.state.data;
+        const {show} = this.state;
+        const {data} = this.state;
 
         return (
-            <div>
-                <Grid container spacing={0} direction="row" justify="center" alignItems="center">
-                    <Grid item xs={6}>
-                        <Card className={classes.grayCard}>
-                            <CardContent>
-                                <LineCharts data={data}/>
-                            </CardContent>
-                        </Card>
+            <Slide direction="down" in={show}>
+                <Paper>
+                    <Grid container spacing={0} direction="row" justify="center" alignItems="center">
+                        <Grid item xs={6}>
+                            <Card className={classes.grayCard}>
+                                <CardContent>
+                                    <LineCharts data={data}/>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Card className={classes.grayCard}>
+                                <CardContent>
+                                    <LineCharts data={data}/>
+                                </CardContent>
+                            </Card>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={6}>
-                        <Card className={classes.grayCard}>
-                            <CardContent>
-                                <LineCharts data={data}/>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                </Grid>
-            </div>
+                </Paper>
+            </Slide>
         );
     }
 }
