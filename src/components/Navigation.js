@@ -14,8 +14,24 @@ import NavigationStyle from '../style/NavigationStyle';
 class Navigation extends React.Component {
 
     state = {
-        value: 0,
+        index: 0,
     };
+
+    componentDidMount() {
+        this.timerID = setInterval(
+            () => this.next(),
+            10000
+        );
+    }
+
+    componentWillUnMount() {
+        clearInterval(this.timerID)
+    }
+
+    next() {
+        this.setState(prevState => ({index: prevState.index === 2 ? 0 : prevState.index + 1}));
+    }
+
 
     handleChange = (event, value) => {
         this.setState({value});
@@ -23,11 +39,11 @@ class Navigation extends React.Component {
 
     render() {
         const {classes} = this.props;
-        const {value} = this.state;
+        const {index} = this.state;
 
         return (
             <BottomNavigation
-                value={value}
+                value={index}
                 onChange={this.handleChange}
                 showLabels
                 className={classes.root}

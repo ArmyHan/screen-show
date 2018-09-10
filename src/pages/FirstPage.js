@@ -27,7 +27,7 @@ const styles = theme => ({
 class FirstPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {data: {}};
+        this.state = {data: [{}]};
         this.setData = this.setData.bind(this);
     }
 
@@ -35,7 +35,7 @@ class FirstPage extends React.Component {
         this.setData();
         this.timerID = setInterval(
             () => this.setData(),
-            10000
+            100000
         );
     }
 
