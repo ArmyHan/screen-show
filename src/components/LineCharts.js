@@ -4,7 +4,7 @@
 import React from 'react';
 import {LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip} from 'recharts';
 import {withStyles} from "@material-ui/core/styles";
-import ChartsStyle from '../css/ChartsStyle';
+import ChartsStyle from '../style/ChartsStyle';
 
 class LineCharts extends React.Component {
     render() {

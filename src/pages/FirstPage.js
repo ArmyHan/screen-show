@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import {withStyles} from "@material-ui/core/styles";
 import ScreenProperties from '../data/ScreenProperties';
 import Button from '@material-ui/core/Button';
+import getToken from '../utils/getToken';
 
 const styles = theme => ({
     grayCard: {
@@ -26,32 +27,40 @@ const styles = theme => ({
 class FirstPage extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            data: [
-                {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
-                {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
-                {name: 'Page C', uv: 2000, pv: 9800, amt: 2290},
-                {name: 'Page D', uv: 2780, pv: 3908, amt: 2000},
-                {name: 'Page E', uv: 1890, pv: 4800, amt: 2181},
-                {name: 'Page F', uv: 2390, pv: 3800, amt: 2500},
-                {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
-            ]
-        };
-
-        this.getData.bind(this);
+        this.state = {data: {}};
+        this.setData = this.setData.bind(this);
     }
 
-    getData() {
-        fetch(ScreenProperties.token, {
-            method: 'GET'
-        }).then((response) => {
-            return response.json();
-        }).then((data) => {
-            console.log(data);
+    componentDidMount() {
+        this.setData();
+        this.timerID = setInterval(
+            () => this.setData(),
+            10000
+        );
+    }
+
+    componentWillUnMount() {
+        clearInterval(this.timerID)
+    }
+
+    setData() {
+        getToken().then((responseData) => {
+            console.log(responseData.token);
+            fetch(ScreenProperties.firstPageUrl + '?token=' + responseData.token, {
+                method: 'GET'
+            }).then((response) => {
+                return response.json();
+            }).then((responseData) => {
+                console.log(responseData.objects);
+                this.setState({
+                    data: responseData.objects
+                });
+            }).catch(erro => {
+                console.log("Oh Erro ", erro);
+            })
         }).catch(erro => {
             console.log("Oh Erro ", erro);
-        })
+        });
     }
 
     render() {
@@ -76,8 +85,8 @@ class FirstPage extends React.Component {
                         </Card>
                     </Grid>
                 </Grid>
-                <Button color="primary" className={classes.button} onClick={this.getData}>
-                    getToken
+                <Button variant="contained" color="primary" className={classes.button} onClick={this.setData}>
+                    getData
                 </Button>
             </div>
         );
