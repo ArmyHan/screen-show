@@ -3,7 +3,7 @@
  */
 const HeaderStyle = {
     header: {
-        marginTop: 10,
+        marginTop: 15,
         fontSize: 32,
         textAlign: "center",
         WebkitTransform: "scale(1, 0.9)",
@@ -12,12 +12,12 @@ const HeaderStyle = {
         fontFamily: "黑体",
     },
     grayDivider: {
-        margin: 3,
+        margin: 5,
         border: "none",
         borderTop: "1px ridge #612e09",
     },
     blueDivider: {
-        margin: 3,
+        margin: 5,
         border: "none",
         borderTop: "1px ridge #321b75",
     },

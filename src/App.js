@@ -5,6 +5,7 @@ import React from 'react';
 import CurrentPage from "./pages/CurrentPage";
 import Navigation from "./components/Navigation";
 import Header from "./components/Header";
+import Tick from "./components/Tick";
 
 class App extends React.Component {
     constructor(props) {
@@ -22,6 +23,7 @@ class App extends React.Component {
         return (
             <div>
                 <Header/>
+                <Tick/>
                 <CurrentPage pageIndex={index}/>
                 <Navigation action={this.setIndex}/>
             </div>
