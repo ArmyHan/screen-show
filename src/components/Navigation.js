@@ -53,7 +53,7 @@ class Navigation extends React.Component {
                 className={classes.Navigation}
             >
                 {bottomNavigationActionList.map((item, itemIndex) => {
-                    return <BottomNavigationAction label={<div
+                    return <BottomNavigationAction key={itemIndex} label={<div
                         className={index === itemIndex ? classes.LabelNameSelectedStyle : classes.LabelNameStyle}>{item.labelName}</div>}
                                                    icon={<div
                                                        className={index === itemIndex ? classes[item.selectedIcon] : classes[item.unSelectedIcon]}/>}/>

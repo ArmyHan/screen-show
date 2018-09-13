@@ -5,7 +5,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import HeaderStyle from '../style/HeaderStyle';
-import Divider from '@material-ui/core/Divider';
 
 class Header extends React.Component {
     render() {
@@ -13,7 +12,7 @@ class Header extends React.Component {
         return (
             <div>
                 <div className={classes.header}>
-                    武汉后勤监控平台
+                    XXXXX后勤监控平台
                 </div>
                 <hr className={classes.grayDivider}/>
                 <hr className={classes.blueDivider}/>

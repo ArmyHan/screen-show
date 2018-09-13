@@ -1,6 +1,6 @@
-import Footer from "../components/imgs/footer.png";
-import Icon1 from "../components/imgs/icon_1.png";
-import Icon01 from "../components/imgs/icon_01.png";
+import Footer from "./imgs/footer.png";
+import Icon1 from "./imgs/icon_1.png";
+import Icon01 from "./imgs/icon_01.png";
 
 /**
  * Create by wujianchuan 2018/9/9

@@ -16,6 +16,6 @@
       "selectedIcon": "FirstPageIconSelected"
     }
   ],
-  "PageSwitchTimer": 5000,
+  "PageSwitchTimer": 500000,
   "DataRequestTimer": 1000
 }
