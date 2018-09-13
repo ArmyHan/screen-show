@@ -1,19 +1,21 @@
 {
   "BottomNavigationActionList": [
     {
-      "labelName": "物料情况0",
+      "labelName": "后勤总览",
       "unSelectedIcon": "FirstPageIcon",
       "selectedIcon": "FirstPageIconSelected"
     },
     {
-      "labelName": "物料情况1",
+      "labelName": "物料情况",
       "unSelectedIcon": "FirstPageIcon",
       "selectedIcon": "FirstPageIconSelected"
     },
     {
-      "labelName": "物料情况2",
+      "labelName": "资产情况",
       "unSelectedIcon": "FirstPageIcon",
       "selectedIcon": "FirstPageIconSelected"
     }
-  ]
+  ],
+  "PageSwitchTimer": 5000,
+  "DataRequestTimer": 1000
 }

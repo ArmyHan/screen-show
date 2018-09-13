@@ -10,7 +10,8 @@ import {withStyles} from "@material-ui/core/styles";
 import ScreenProperties from '../data/ScreenProperties';
 import getToken from '../utils/getToken';
 import Paper from "@material-ui/core/Paper";
-import Slide from "@material-ui/core/Slide";
+import Fade from '@material-ui/core/Fade';
+import Config from '../config';
 
 const styles = theme => ({
     grayCard: {
@@ -33,10 +34,11 @@ class FirstPage extends React.Component {
     }
 
     componentDidMount() {
+        const dataRequestTimer = Config.DataRequestTimer;
         this.setData();
         this.timerID = setInterval(
             () => this.setData(),
-            100000
+            dataRequestTimer
         );
         this.setState({show: true})
     }
@@ -71,7 +73,7 @@ class FirstPage extends React.Component {
         const {data} = this.state;
 
         return (
-            <Slide direction="down" in={show}>
+            <Fade in={show} timeout={1000}>
                 <Paper>
                     <Grid container spacing={0} direction="row" justify="center" alignItems="center">
                         <Grid item xs={6}>
@@ -83,7 +85,7 @@ class FirstPage extends React.Component {
                         </Grid>
                     </Grid>
                 </Paper>
-            </Slide>
+            </Fade>
         );
     }
 }
