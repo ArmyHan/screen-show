@@ -8,7 +8,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from "@material-ui/core/Grid";
 import {withStyles} from "@material-ui/core/styles";
 import ScreenProperties from '../data/ScreenProperties';
-import Button from '@material-ui/core/Button';
 import getToken from '../utils/getToken';
 import Paper from "@material-ui/core/Paper";
 import Slide from "@material-ui/core/Slide";

@@ -5,6 +5,7 @@ import React from 'react';
 import FirstPage from "./pages/FirstPage";
 import SecondPage from "./pages/SecondPage";
 import ThirdPage from "./pages/ThirdPage";
+import CurrentPage from "./pages/CurrentPage";
 import Navigation from "./components/Navigation";
 
 class App extends React.Component {
@@ -21,7 +22,8 @@ class App extends React.Component {
     render() {
         const {index} = this.state;
         return (
-            <div>{index === 0 ? <FirstPage/> : index === 1 ? <SecondPage/> : <ThirdPage/>}
+            <div>
+                <CurrentPage pageIndex={index}/>
                 <Navigation action={this.setIndex}/>
             </div>
         );

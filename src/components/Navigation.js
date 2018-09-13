@@ -6,10 +6,8 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 import NavigationStyle from '../style/NavigationStyle';
+import config from '../config';
 
 class Navigation extends React.Component {
 
@@ -31,7 +29,7 @@ class Navigation extends React.Component {
     }
 
     next() {
-        this.setState(prevState => ({index: prevState.index === 2 ? this.props.action(0) : this.props.action(prevState.index + 1)}));
+        this.setState(prevState => ({index: prevState.index === config.BottomNavigationActionList.length - 1 ? this.props.action(0) : this.props.action(prevState.index + 1)}));
     }
 
 
@@ -43,17 +41,21 @@ class Navigation extends React.Component {
     render() {
         const {classes} = this.props;
         const {index} = this.state;
+        const bottomNavigationActionList = config.BottomNavigationActionList;
 
         return (
             <BottomNavigation
                 value={index}
                 onChange={this.handleChange}
                 showLabels
-                className={classes.root}
+                className={classes.Navigation}
             >
-                <BottomNavigationAction label="FirstScreen" icon={<RestoreIcon/>}/>
-                <BottomNavigationAction label="SecondScreen" icon={<FavoriteIcon/>}/>
-                <BottomNavigationAction label="ThirdScreen" icon={<LocationOnIcon/>}/>
+                {bottomNavigationActionList.map((item, itemIndex) => {
+                    return <BottomNavigationAction label={<div
+                        className={index === itemIndex ? classes.LabelNameSelectedStyle : classes.LabelNameStyle}>{item.labelName}</div>}
+                                                   icon={<div
+                                                       className={index === itemIndex ? classes[item.selectedIcon] : classes[item.unSelectedIcon]}/>}/>
+                })}
             </BottomNavigation>
         );
     }

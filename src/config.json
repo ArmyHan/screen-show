@@ -1,0 +1,19 @@
+{
+  "BottomNavigationActionList": [
+    {
+      "labelName": "物料情况0",
+      "unSelectedIcon": "FirstPageIcon",
+      "selectedIcon": "FirstPageIconSelected"
+    },
+    {
+      "labelName": "物料情况1",
+      "unSelectedIcon": "FirstPageIcon",
+      "selectedIcon": "FirstPageIconSelected"
+    },
+    {
+      "labelName": "物料情况2",
+      "unSelectedIcon": "FirstPageIcon",
+      "selectedIcon": "FirstPageIconSelected"
+    }
+  ]
+}
