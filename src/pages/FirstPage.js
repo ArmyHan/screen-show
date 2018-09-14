@@ -47,13 +47,13 @@ class FirstPage extends React.Component {
                             <TableBase title={topLeftTableTitle} header={topLeftTableHead} rowData={rowData} footData={footData}/>
                         </Grid>
                         <Grid item xs={7}>
-                            <Paper square={true} className={classes.paper}>xs=6</Paper>
+                            <Paper square={false} className={classes.paper}>xs=6</Paper>
                         </Grid>
                         <Grid item xs={6}>
-                            <Paper square={true} className={classes.paper}>xs=3</Paper>
+                            <Paper square={false} className={classes.paper}>xs=3</Paper>
                         </Grid>
                         <Grid item xs={6}>
-                            <Paper square={true} className={classes.paper}>xs=3</Paper>
+                            <Paper square={false} className={classes.paper}>xs=3</Paper>
                         </Grid>
                     </Grid>
                 </div>

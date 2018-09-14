@@ -2,16 +2,16 @@
  * Create by wujianchuan 2018/9/14
  */
 import React from 'react';
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/core/styles";
+import TableBaseStyle from '../style/TableBaseStyle';
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import Paper from "@material-ui/core/Paper";
-import {withStyles} from "@material-ui/core/styles";
-import TableBaseStyle from '../style/TableBaseStyle';
 import Typography from "@material-ui/core/Typography";
-import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 
 const TableContentCell = withStyles(theme => ({
@@ -123,7 +123,7 @@ class TableBase extends React.Component {
                         <Grid container spacing={0}>
                             {footData.map((item, index) => {
                                 return (
-                                    <React.Fragment>
+                                    <React.Fragment key={index}>
                                         <FootLabel item xs={footXs}>
                                             {item.labelName}
                                         </FootLabel>
