@@ -29,11 +29,12 @@ const NavigationStyle = {
         backgroundImage: "url(" + Icon01 + ")"
     },
     LabelNameSelectedStyle: {
-        color: "#8e9df5",
-        textShadow: "0px 1px 20px #fff",
+        color: "#fff",
+        textShadow: "0px 2px 20px #fff",
     },
     LabelNameStyle: {
-        color: "#3f51b5"
+        color: "#fff",
+        opacity: 0.4,
     }
 };
 export default NavigationStyle;

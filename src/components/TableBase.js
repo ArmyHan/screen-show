@@ -14,37 +14,32 @@ import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 
-let id = 0;
-
-function createData(name, calories, fat, carbs) {
-    id += 1;
-    return {id, name, calories, fat, carbs};
-}
-
-const rows = [
-    createData('办公用品', '123,456,456,0000', '123,456,456,0000', '100%'),
-    createData('计量器具及量具、衡器', '123,456,456,0000', '123,456,456,0000', '100%'),
-    createData('计量器具及量具、衡器', '123,456,456,0000', '123,456,456,0000', '100%'),
-    createData('办公用品', '123,456,456,0000', '123,456,456,0000', '100%'),
-    createData('办公用品', '123,456,456,0000', '123,456,456,0000', '100%'),
-    createData('计量器具及量具、衡器', '123,456,456,0000', '123,456,456,0000', '100%'),
-];
+const TableContentCell = withStyles(theme => ({
+    root: {
+        color: "#6AACF5",
+        opacity: 0.8,
+        fontSize: 15,
+    },
+}))(TableCell);
 
 const TableTitleCell = withStyles(theme => ({
     head: {
         color: "#ff9800",
-    },
-    body: {
-        fontSize: 14,
+        fontSize: 16,
     },
 }))(TableCell);
 
-const TableContentCell = withStyles(theme => ({
+const TableContentRow = withStyles(theme => ({
     root: {
-        color: "#6AACF5",
-        opacity: 0.8
-    },
-}))(TableCell);
+        height: 39,
+    }
+}))(TableRow);
+
+const TableTitleRow = withStyles(theme => ({
+    root: {
+        height: 44,
+    }
+}))(TableRow);
 
 const TitleTypography = withStyles(theme => ({
     root: {
@@ -54,6 +49,7 @@ const TitleTypography = withStyles(theme => ({
         fontWeight: "bold",
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
+        fontSize: 17,
     }
 }))(Typography);
 
@@ -63,79 +59,80 @@ const FootTypography = withStyles(theme => ({
         padding: 10,
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
+        fontSize: 15,
     },
 }))(Typography);
 
-const GridLabel = withStyles(theme => ({
+const FootLabel = withStyles(theme => ({
     item: {
         color: "#ff9800",
         textAlign: "right",
-        fontSize: 13,
     },
 }))(Grid);
 
-const GridContent = withStyles(theme => ({
+const FootContent = withStyles(theme => ({
     item: {
         color: "#6AACF5",
         textAlign: "left",
-        fontSize: 13,
     },
 }))(Grid);
 
 class TableBase extends React.Component {
     render() {
-        const {classes} = this.props;
+        const {classes, title, header, rowData, footData} = this.props;
+        const footXs = footData > 3 ? 1 : 2;
         return (
             <div>
                 <Paper className={classes.tableAroundPaper} square={false}>
                     <TitleTypography variant="title" gutterBottom>
-                        年度预算执行情况
+                        {title}
                     </TitleTypography>
                     <Table className={classes.table}>
                         <TableHead>
-                            <TableRow>
-                                <TableTitleCell>预算项目</TableTitleCell>
-                                <TableTitleCell numeric>预算总额</TableTitleCell>
-                                <TableTitleCell numeric>采购总额</TableTitleCell>
-                                <TableTitleCell numeric>完成</TableTitleCell>
-                            </TableRow>
+                            <TableTitleRow>
+                                {header.map((headItem, headIndex) => {
+                                    return <TableTitleCell numeric={headItem.numeric} key={headIndex}>
+                                        {headItem.displayName}
+                                    </TableTitleCell>
+                                })}
+                            </TableTitleRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map(row => {
+                            {rowData.map((rowItem, rowIndex) => {
                                 return (
-                                    <TableRow key={row.id}>
-                                        <TableContentCell style={{color: "#ffffff",}} component="th"
-                                                          scope="row">
-                                            {row.name}
-                                        </TableContentCell>
-                                        <TableContentCell numeric>{row.calories}</TableContentCell>
-                                        <TableContentCell numeric>{row.fat}</TableContentCell>
-                                        <TableContentCell numeric>{row.carbs}</TableContentCell>
-                                    </TableRow>
+                                    <TableContentRow key={rowIndex}>
+                                        {header.map((headItem, headIndex) => {
+                                            if (headIndex === 0) {
+                                                return <TableContentCell numeric={headItem.numeric} key={headIndex}
+                                                                         style={{color: "#ffffff",}} component="th"
+                                                                         scope="row">
+                                                    {rowItem[headItem.name]}
+                                                </TableContentCell>
+                                            } else {
+                                                return <TableContentCell numeric={headItem.numeric} key={headIndex}>
+                                                    {rowItem[headItem.name]}
+                                                </TableContentCell>
+                                            }
+                                        })}
+                                    </TableContentRow>
                                 );
                             })}
                         </TableBody>
                     </Table>
                     <FootTypography variant="title" align="center">
                         <Grid container spacing={0}>
-                            <GridLabel item xs={2}>
-                                年度预算总额：
-                            </GridLabel>
-                            <GridContent item xs={3}>
-                                123,456,456,0000
-                            </GridContent>
-                            <GridLabel item xs={2}>
-                                年度采购总额：
-                            </GridLabel>
-                            <GridContent item xs={2}>
-                                123,456,456,0000
-                            </GridContent>
-                            <GridLabel item xs={2}>
-                                完成率：
-                            </GridLabel>
-                            <GridContent item xs={1}>
-                                100%
-                            </GridContent>
+                            {footData.map((item, index) => {
+                                return (
+                                    <React.Fragment>
+                                        <FootLabel item xs={footXs}>
+                                            {item.labelName}
+                                        </FootLabel>
+                                        <FootContent item xs={footXs}>
+                                            {item.value}
+                                        </FootContent>
+                                    </React.Fragment>
+                                );
+                            })}
                         </Grid>
                     </FootTypography>
                 </Paper>

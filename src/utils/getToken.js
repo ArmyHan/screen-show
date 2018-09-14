@@ -1,11 +1,11 @@
-import ScreenProperties from "../data/ScreenProperties";
+import Config from "../config";
 
 /**
  * Create by wujianchuan 2018/9/10
  */
 
 const getToken = () => {
-    return fetch(ScreenProperties.token, {
+    return fetch(Config.token, {
         method: 'GET'
     }).then((response) => {
         return response.json();

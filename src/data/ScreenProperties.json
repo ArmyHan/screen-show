@@ -1,4 +1,0 @@
-{
-  "token": "http://localhost:8077/token?id=LSPTIMER&password=WHBCLSPMIS",
-  "firstPageUrl": "http://localhost:8077/api/getFirstPageData"
-}

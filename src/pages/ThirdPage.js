@@ -7,8 +7,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from "@material-ui/core/Grid";
 import {withStyles} from "@material-ui/core/styles";
-import ScreenProperties from '../data/ScreenProperties';
-import getToken from '../utils/getToken';
 import Paper from "@material-ui/core/Paper";
 import Fade from "@material-ui/core/Fade";
 
