@@ -78,8 +78,73 @@ const FootContent = withStyles(theme => ({
 }))(Grid);
 
 class TableBase extends React.Component {
+
+    getTableBody(header, rowData, pageSize) {
+        if (rowData !== undefined && rowData.length > 0) {
+            return rowData.map((rowItem, rowIndex) => {
+                return (
+                    <TableContentRow key={rowIndex}>
+                        {header.map((headItem, headIndex) => {
+                            if (headIndex === 0) {
+                                return <TableContentCell numeric={headItem.numeric} key={headIndex}
+                                                         style={{color: "#ffffff",}} component="th"
+                                                         scope="row">
+                                    {rowItem[headItem.name]}
+                                </TableContentCell>
+                            } else {
+                                return <TableContentCell numeric={headItem.numeric} key={headIndex}>
+                                    {rowItem[headItem.name]}
+                                </TableContentCell>
+                            }
+                        })}
+                    </TableContentRow>
+                );
+            });
+        } else {
+            let result = [];
+            for (let rowIndex = 0; rowIndex < pageSize; rowIndex++) {
+                result.push(<TableContentRow key={rowIndex}>
+                    {header.map((headItem, headIndex) => {
+                        if (headIndex === 0) {
+                            return <TableContentCell numeric={headItem.numeric} key={headIndex}
+                                                     style={{color: "#ffffff",}} component="th"
+                                                     scope="row">
+                                ---
+                            </TableContentCell>
+                        } else {
+                            return <TableContentCell numeric={headItem.numeric} key={headIndex}>
+                                ---
+                            </TableContentCell>
+                        }
+                    })}
+                </TableContentRow>);
+            }
+            return result;
+        }
+    }
+
+    static getTableHead(header) {
+        if (header !== undefined && header.length > 0) {
+            return (
+                <TableTitleRow>
+                    {header.map((headItem, headIndex) => {
+                        return <TableTitleCell numeric={headItem.numeric} key={headIndex}>
+                            {headItem.displayName}
+                        </TableTitleCell>
+                    })}
+                </TableTitleRow>
+            );
+        } else {
+            return (
+                <TableTitleRow style={{fontSize: 30, color: "red", textAlign: "center"}}>
+                    找不到配置信息!
+                </TableTitleRow>
+            );
+        }
+    }
+
     render() {
-        const {classes, title, header, rowData, footData} = this.props;
+        const {classes, title, header, rowData, footData, pageSize} = this.props;
         const footXs = footData > 3 ? 1 : 2;
         return (
             <div>
@@ -89,34 +154,10 @@ class TableBase extends React.Component {
                     </TitleTypography>
                     <Table className={classes.table}>
                         <TableHead>
-                            <TableTitleRow>
-                                {header.map((headItem, headIndex) => {
-                                    return <TableTitleCell numeric={headItem.numeric} key={headIndex}>
-                                        {headItem.displayName}
-                                    </TableTitleCell>
-                                })}
-                            </TableTitleRow>
+                            {TableBase.getTableHead(header)}
                         </TableHead>
                         <TableBody>
-                            {rowData.map((rowItem, rowIndex) => {
-                                return (
-                                    <TableContentRow key={rowIndex}>
-                                        {header.map((headItem, headIndex) => {
-                                            if (headIndex === 0) {
-                                                return <TableContentCell numeric={headItem.numeric} key={headIndex}
-                                                                         style={{color: "#ffffff",}} component="th"
-                                                                         scope="row">
-                                                    {rowItem[headItem.name]}
-                                                </TableContentCell>
-                                            } else {
-                                                return <TableContentCell numeric={headItem.numeric} key={headIndex}>
-                                                    {rowItem[headItem.name]}
-                                                </TableContentCell>
-                                            }
-                                        })}
-                                    </TableContentRow>
-                                );
-                            })}
+                            {this.getTableBody(header, rowData, pageSize)}
                         </TableBody>
                     </Table>
                     <FootTypography variant="title" align="center">

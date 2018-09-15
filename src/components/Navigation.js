@@ -7,7 +7,7 @@ import {withStyles} from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import NavigationStyle from '../style/NavigationStyle';
-import Config from '../config';
+import GlobalConfig from '../GlobalConfig';
 
 class Navigation extends React.Component {
 
@@ -18,7 +18,7 @@ class Navigation extends React.Component {
     }
 
     componentDidMount() {
-        const pageSwitchTimer = Config.PageSwitchTimer;
+        const pageSwitchTimer = GlobalConfig.PageSwitchTimer;
         this.timerID = setInterval(
             () => this.next(),
             pageSwitchTimer
@@ -30,7 +30,7 @@ class Navigation extends React.Component {
     }
 
     next() {
-        const navigationLength = Config.BottomNavigationActionList.length;
+        const navigationLength = GlobalConfig.BottomNavigationActionList.length;
         this.setState(prevState => ({index: prevState.index === navigationLength - 1 ? this.props.action(0) : this.props.action(prevState.index + 1)}));
     }
 
@@ -43,7 +43,7 @@ class Navigation extends React.Component {
     render() {
         const {classes} = this.props;
         const {index} = this.state;
-        const bottomNavigationActionList = Config.BottomNavigationActionList;
+        const bottomNavigationActionList = GlobalConfig.BottomNavigationActionList;
 
         return (
             <BottomNavigation

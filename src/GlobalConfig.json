@@ -19,5 +19,5 @@
     }
   ],
   "PageSwitchTimer": 500000,
-  "DataRequestTimer": 1000
+  "RequestTimer": 10000
 }
