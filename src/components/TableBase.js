@@ -10,9 +10,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
 
 const TableContentCell = withStyles(theme => ({
     root: {
@@ -40,42 +37,6 @@ const TableTitleRow = withStyles(theme => ({
         height: 44,
     }
 }))(TableRow);
-
-const TitleTypography = withStyles(theme => ({
-    root: {
-        backgroundColor: "hsla(223, 42%, 20%, 0.8)",
-        padding: 10,
-        color: "#f50057",
-        fontWeight: "bold",
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-        fontSize: 17,
-    }
-}))(Typography);
-
-const FootTypography = withStyles(theme => ({
-    root: {
-        backgroundColor: "hsla(223, 42%, 20%, 0.8)",
-        padding: 10,
-        borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10,
-        fontSize: 15,
-    },
-}))(Typography);
-
-const FootLabel = withStyles(theme => ({
-    item: {
-        color: "#ff9800",
-        textAlign: "right",
-    },
-}))(Grid);
-
-const FootContent = withStyles(theme => ({
-    item: {
-        color: "#6AACF5",
-        textAlign: "left",
-    },
-}))(Grid);
 
 class TableBase extends React.Component {
 
@@ -144,40 +105,16 @@ class TableBase extends React.Component {
     }
 
     render() {
-        const {classes, title, header, rowData, footData, pageSize} = this.props;
-        const footXs = footData > 3 ? 1 : 2;
+        const {classes, header, rowData, pageSize} = this.props;
         return (
-            <div>
-                <Paper className={classes.tableAroundPaper} square={false}>
-                    <TitleTypography variant="title" gutterBottom>
-                        {title}
-                    </TitleTypography>
-                    <Table className={classes.table}>
-                        <TableHead>
-                            {TableBase.getTableHead(header)}
-                        </TableHead>
-                        <TableBody>
-                            {this.getTableBody(header, rowData, pageSize)}
-                        </TableBody>
-                    </Table>
-                    <FootTypography variant="title" align="center">
-                        <Grid container spacing={0}>
-                            {footData.map((item, index) => {
-                                return (
-                                    <React.Fragment key={index}>
-                                        <FootLabel item xs={footXs}>
-                                            {item.labelName}
-                                        </FootLabel>
-                                        <FootContent item xs={footXs}>
-                                            {item.value}
-                                        </FootContent>
-                                    </React.Fragment>
-                                );
-                            })}
-                        </Grid>
-                    </FootTypography>
-                </Paper>
-            </div>
+            <Table className={classes.table}>
+                <TableHead>
+                    {TableBase.getTableHead(header)}
+                </TableHead>
+                <TableBody>
+                    {this.getTableBody(header, rowData, pageSize)}
+                </TableBody>
+            </Table>
         );
     }
 }

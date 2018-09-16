@@ -73,6 +73,13 @@ class SecondPage extends React.Component {
                                 </CardContent>
                             </Card>
                         </Grid>
+                        <Grid item xs={6}>
+                            <Card className={classes.grayCard}>
+                                <CardContent>
+                                    <LineCharts data={data}/>
+                                </CardContent>
+                            </Card>
+                        </Grid>
                     </Grid>
                 </Paper>
             </Fade>

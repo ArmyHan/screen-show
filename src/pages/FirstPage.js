@@ -11,10 +11,11 @@ import FirstPageStyle from '../style/FirstPageStyle';
 import TableBase from '../components/TableBase';
 import FirstPageConfig from '../data/FirstPageConfig';
 import GlobalConfig from '../GlobalConfig';
+import Container from "../components/Container";
 
 const requestTimer = GlobalConfig.RequestTimer;
-const topLeftTableHead = FirstPageConfig.topLeftTable.header;
-const topLeftTableTitle = FirstPageConfig.topLeftTable.title;
+const topLeftContainer = FirstPageConfig.topLeftContainer;
+const bottomLeftContainer = FirstPageConfig.bottomLeftContainer;
 const footData = [
     {labelName: "年度预算总额：", value: "123,456,456,0000"},
     {labelName: "年度采购总额：", value: "123,456,456,0000"},
@@ -29,6 +30,7 @@ class FirstPage extends React.Component {
 
     componentDidMount() {
         this.setState({show: true});
+        this.setData();
         this.timerID = setInterval(() => this.setData(), requestTimer)
     }
 
@@ -93,17 +95,39 @@ class FirstPage extends React.Component {
                 <div className={classes.root}>
                     <Grid className={classes.container} justify={"center"} container spacing={8}>
                         <Grid item xs={5}>
-                            <TableBase title={topLeftTableTitle} header={topLeftTableHead} rowData={topLeftData}
-                                       footData={footData} pageSize={pageSize}/>
+                            <Container title={topLeftContainer.title} footData={footData}>
+                                <TableBase header={topLeftContainer.header} rowData={topLeftData}
+                                           pageSize={pageSize}/>
+                            </Container>
                         </Grid>
                         <Grid item xs={7}>
-                            <Paper square={false} className={classes.paper}>xs=6</Paper>
+                            <Container title={topLeftContainer.title} footData={footData}>
+                                <TableBase header={topLeftContainer.header} rowData={topLeftData}
+                                           pageSize={pageSize}/>
+                            </Container>
                         </Grid>
                         <Grid item xs={6}>
-                            <Paper square={false} className={classes.paper}>xs=3</Paper>
+                            <Container title={bottomLeftContainer.title}>
+                                <div style={{padding: 40}}>
+                                    <Grid className={classes.container} justify={"center"} container spacing={40}>
+                                        <Grid item xs={4}>
+                                            <Paper>1</Paper>
+                                        </Grid>
+                                        <Grid item xs={4}>
+                                            <Paper>2</Paper>
+                                        </Grid>
+                                        <Grid item xs={4}>
+                                            <Paper>3</Paper>
+                                        </Grid>
+                                    </Grid>
+                                </div>
+                            </Container>
                         </Grid>
                         <Grid item xs={6}>
-                            <Paper square={false} className={classes.paper}>xs=3</Paper>
+                            <Container title={topLeftContainer.title} footData={footData}>
+                                <TableBase header={topLeftContainer.header} rowData={topLeftData}
+                                           pageSize={pageSize}/>
+                            </Container>
                         </Grid>
                     </Grid>
                 </div>

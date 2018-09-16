@@ -1,5 +1,5 @@
 {
-  "topLeftTable": {
+  "topLeftContainer": {
     "title": "年度预算执行情况",
     "header": [
       {
@@ -24,5 +24,8 @@
       }
     ],
     "pageSize": 6
+  },
+  "bottomLeftContainer": {
+    "title": "资产汇总"
   }
 }
