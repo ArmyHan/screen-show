@@ -4,13 +4,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from "@material-ui/core/styles";
+import FirstPageStyle from '../style/FirstPageStyle';
+import FirstPageConfig from '../data/FirstPageConfig';
+import GlobalConfig from '../GlobalConfig';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import FirstPageStyle from '../style/FirstPageStyle';
 import TableBase from '../components/TableBase';
-import FirstPageConfig from '../data/FirstPageConfig';
-import GlobalConfig from '../GlobalConfig';
 import Container from "../components/Container";
 
 const requestTimer = GlobalConfig.RequestTimer;
