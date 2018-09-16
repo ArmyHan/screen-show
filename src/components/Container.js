@@ -10,13 +10,14 @@ import Grid from "@material-ui/core/Grid";
 const ContainerBorder = withStyles(theme => ({
     root: {
         borderStyle: "ridge",
+        borderColor: "#6AACF5",
+        backgroundColor: "hsla(223, 42%, 20%, 0.4)",
         borderWidth: 1,
         borderRadius: 10,
-        backgroundColor: "hsla(223, 42%, 20%, 0.4)",
         paddingBottom: 3,
         paddingTop: 3,
         paddingLeft: 6,
-        paddingRight: 6
+        paddingRight: 6,
     },
 }))(Paper);
 

@@ -4,7 +4,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/core/styles";
-import TableBaseStyle from '../style/TableBaseStyle';
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
@@ -105,9 +104,9 @@ class TableBase extends React.Component {
     }
 
     render() {
-        const {classes, header, rowData, pageSize} = this.props;
+        const {header, rowData, pageSize} = this.props;
         return (
-            <Table className={classes.table}>
+            <Table>
                 <TableHead>
                     {TableBase.getTableHead(header)}
                 </TableHead>
@@ -119,8 +118,4 @@ class TableBase extends React.Component {
     }
 }
 
-TableBase.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(TableBaseStyle)(TableBase);
+export default TableBase;
