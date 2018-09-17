@@ -40,7 +40,7 @@ class ThirdPage extends React.Component {
         this.setState({show: true})
     }
 
-    componentWillUnMount() {
+    componentWillUnmount() {
         this._isMounted = false;
         clearInterval(this.timerID)
     }
