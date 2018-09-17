@@ -74,7 +74,7 @@ class CardContainer extends React.Component {
                                                     <tbody>
                                                     <tr>
                                                         <td width="30%">{rowItem.name}</td>
-                                                        <td width="70%" style={{textAlign: "right"}}>
+                                                        <td width="70%" style={{textAlign: "right", paddingRight: 5}}>
                                                             {rowItem.value}
                                                         </td>
                                                     </tr>
