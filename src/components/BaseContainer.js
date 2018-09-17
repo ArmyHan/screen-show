@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import {withStyles} from "@material-ui/core/styles";
+import {warningColor} from '../style/Color';
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -14,10 +15,11 @@ const ContainerBorder = withStyles(theme => ({
         backgroundColor: "hsla(223, 42%, 20%, 0.4)",
         borderWidth: 1,
         borderRadius: 10,
-        paddingBottom: 3,
-        paddingTop: 3,
+        paddingBottom: 5,
+        paddingTop: 5,
         paddingLeft: 6,
         paddingRight: 6,
+        marginTop: 5,
     },
 }))(Paper);
 
@@ -45,7 +47,7 @@ const FootTypography = withStyles(theme => ({
 
 const FootLabel = withStyles(theme => ({
     item: {
-        color: "#ff9800",
+        color: warningColor,
         textAlign: "right",
     },
 }))(Grid);
@@ -57,7 +59,7 @@ const FootContent = withStyles(theme => ({
     },
 }))(Grid);
 
-class Container extends React.Component {
+class BaseContainer extends React.Component {
 
     static getTitleTypography(title) {
         if (title !== undefined && title.length > 0) {
@@ -94,10 +96,10 @@ class Container extends React.Component {
     }
 
     render() {
-        const {classes, children, title, footData} = this.props;
+        const {children, title, footData} = this.props;
         return (
             <ContainerBorder square={false}>
-                {Container.getTitleTypography(title)}
+                {BaseContainer.getTitleTypography(title)}
                 {children}
                 {this.getFootTypography(footData)}
             </ContainerBorder>
@@ -105,4 +107,4 @@ class Container extends React.Component {
     }
 }
 
-export default Container;
+export default BaseContainer;

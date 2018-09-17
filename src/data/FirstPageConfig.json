@@ -25,7 +25,13 @@
     ],
     "pageSize": 6
   },
+  "topRightContainer": {
+    "title": "中心物资库存"
+  },
   "bottomLeftContainer": {
     "title": "资产汇总"
+  },
+  "bottomRightContainer": {
+    "title": "预警提醒"
   }
 }

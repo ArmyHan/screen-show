@@ -8,14 +8,16 @@ import FirstPageStyle from '../style/FirstPageStyle';
 import FirstPageConfig from '../data/FirstPageConfig';
 import GlobalConfig from '../GlobalConfig';
 import Fade from '@material-ui/core/Fade';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import TableBase from '../components/TableBase';
-import Container from "../components/Container";
+import BaseContainer from "../components/BaseContainer";
+import CardContainer from "../components/CardContainer";
 
 const requestTimer = GlobalConfig.RequestTimer;
 const topLeftContainer = FirstPageConfig.topLeftContainer;
+const topRightContainer = FirstPageConfig.topRightContainer;
 const bottomLeftContainer = FirstPageConfig.bottomLeftContainer;
+const bottomRightContainer = FirstPageConfig.bottomRightContainer;
 const footData = [
     {labelName: "年度预算总额：", value: "123,456,456,0000"},
     {labelName: "年度采购总额：", value: "123,456,456,0000"},
@@ -25,109 +27,129 @@ const footData = [
 class FirstPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {show: false, topLeftData: [], pageSize: 6, pageNumber: 0};
+        this.state = {show: false, data: {}, pageSize: 6, pageNumber: 0};
     }
 
     componentDidMount() {
+        this._isMounted = true;
         this.setState({show: true});
         this.setData();
         this.timerID = setInterval(() => this.setData(), requestTimer)
+    }
+
+
+    componentWillUnmount() {
+        this._isMounted = false;
+        clearInterval(this.timerID);
     }
 
     setData() {
         let completionSituation = Math.round(Math.random() * 100);
         let budgetAmount = Math.round(Math.random() * 10000000);
         let purchaseAmount = Math.round(Math.random() * 10000000);
-        this.setState({
-            topLeftData: [
-                {
-                    uuid: 0,
-                    budgetProject: '办公用品',
-                    budgetAmount: budgetAmount,
-                    purchaseAmount: purchaseAmount,
-                    completionSituation: completionSituation + '%'
-                },
-                {
-                    uuid: 1,
-                    budgetProject: '计量器具及量具、衡器',
-                    budgetAmount: budgetAmount,
-                    purchaseAmount: purchaseAmount,
-                    completionSituation: completionSituation + '%'
-                },
-                {
-                    uuid: 2,
-                    budgetProject: '办公用品',
-                    budgetAmount: budgetAmount,
-                    purchaseAmount: purchaseAmount,
-                    completionSituation: completionSituation + '%'
-                },
-                {
-                    uuid: 3,
-                    budgetProject: '计量器具及量具、衡器',
-                    budgetAmount: budgetAmount,
-                    purchaseAmount: purchaseAmount,
-                    completionSituation: completionSituation + '%'
-                },
-                {
-                    uuid: 4,
-                    budgetProject: '计量器具及量具、衡器',
-                    budgetAmount: budgetAmount,
-                    purchaseAmount: purchaseAmount,
-                    completionSituation: completionSituation + '%'
-                },
-                {
-                    uuid: 5,
-                    budgetProject: '办公用品',
-                    budgetAmount: budgetAmount,
-                    purchaseAmount: purchaseAmount,
-                    completionSituation: completionSituation + '%'
-                },
-            ]
-        })
+        if (this._isMounted) {
+            this.setState({
+                data: {
+                    topLeftData: [
+                        {
+                            uuid: 0,
+                            budgetProject: '办公用品',
+                            budgetAmount: budgetAmount,
+                            purchaseAmount: purchaseAmount,
+                            completionSituation: completionSituation + '%'
+                        },
+                        {
+                            uuid: 1,
+                            budgetProject: '计量器具及量具、衡器',
+                            budgetAmount: budgetAmount,
+                            purchaseAmount: purchaseAmount,
+                            completionSituation: completionSituation + '%'
+                        },
+                        {
+                            uuid: 2,
+                            budgetProject: '办公用品',
+                            budgetAmount: budgetAmount,
+                            purchaseAmount: purchaseAmount,
+                            completionSituation: completionSituation + '%'
+                        },
+                        {
+                            uuid: 3,
+                            budgetProject: '计量器具及量具、衡器',
+                            budgetAmount: budgetAmount,
+                            purchaseAmount: purchaseAmount,
+                            completionSituation: completionSituation + '%'
+                        },
+                        {
+                            uuid: 4,
+                            budgetProject: '计量器具及量具、衡器',
+                            budgetAmount: budgetAmount,
+                            purchaseAmount: purchaseAmount,
+                            completionSituation: completionSituation + '%'
+                        },
+                        {
+                            uuid: 5,
+                            budgetProject: '办公用品',
+                            budgetAmount: budgetAmount,
+                            purchaseAmount: purchaseAmount,
+                            completionSituation: completionSituation + '%'
+                        },
+                    ],
+                    bottomLeftData: [
+                        {
+                            title: '在册资产',
+                            data: [{name: "资产", value: '200台'},
+                                {name: "价值", value: '1456,00万'},
+                                {name: "在用", value: '100台'},
+                                {name: "闲置", value: '100台'}]
+                        }, {
+                            title: '资产请购',
+                            data: [{name: "申请", value: '200台'},
+                                {name: "已批", value: '200台'},
+                                {name: "已采", value: '100台'},
+                                {name: "待批", value: '100台'}]
+                        }, {
+                            title: '资产报废',
+                            data: [{name: "申请", value: '200台'},
+                                {name: "已批", value: '200台'},
+                                {name: "已采", value: '100台'},
+                                {name: "待批", value: '100台'}]
+                        }
+                    ]
+                }
+            })
+        }
     }
 
     render() {
         const {classes} = this.props;
-        const {show, topLeftData, pageSize, pageNumber} = this.state;
+        const {show, data, pageSize, pageNumber} = this.state;
 
         return (
             <Fade in={show} timeout={1000}>
                 <div className={classes.root}>
-                    <Grid className={classes.container} justify={"center"} container spacing={8}>
+                    <Grid justify={"center"} container spacing={24}>
                         <Grid item xs={5}>
-                            <Container title={topLeftContainer.title} footData={footData}>
-                                <TableBase header={topLeftContainer.header} rowData={topLeftData}
+                            <BaseContainer title={topLeftContainer.title} footData={footData}>
+                                <TableBase header={topLeftContainer.header} rowData={data.topLeftData}
                                            pageSize={pageSize}/>
-                            </Container>
+                            </BaseContainer>
                         </Grid>
                         <Grid item xs={7}>
-                            <Container title={topLeftContainer.title} footData={footData}>
-                                <TableBase header={topLeftContainer.header} rowData={topLeftData}
+                            <BaseContainer title={topRightContainer.title} footData={footData}>
+                                <TableBase header={topLeftContainer.header} rowData={data.topLeftData}
                                            pageSize={pageSize}/>
-                            </Container>
+                            </BaseContainer>
                         </Grid>
                         <Grid item xs={6}>
-                            <Container title={bottomLeftContainer.title}>
-                                <div style={{padding: 40}}>
-                                    <Grid className={classes.container} justify={"center"} container spacing={40}>
-                                        <Grid item xs={4}>
-                                            <Paper>1</Paper>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <Paper>2</Paper>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <Paper>3</Paper>
-                                        </Grid>
-                                    </Grid>
-                                </div>
-                            </Container>
+                            <BaseContainer title={bottomLeftContainer.title}>
+                                <CardContainer cardList={data.bottomLeftData}/>
+                            </BaseContainer>
                         </Grid>
                         <Grid item xs={6}>
-                            <Container title={topLeftContainer.title} footData={footData}>
-                                <TableBase header={topLeftContainer.header} rowData={topLeftData}
+                            <BaseContainer title={bottomRightContainer.title}>
+                                <TableBase header={topLeftContainer.header} rowData={data.topLeftData}
                                            pageSize={pageSize}/>
-                            </Container>
+                            </BaseContainer>
                         </Grid>
                     </Grid>
                 </div>

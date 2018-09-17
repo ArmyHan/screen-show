@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import {withStyles} from "@material-ui/core/styles";
+import {warningColor} from '../style/Color';
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
@@ -19,7 +20,7 @@ const TableContentCell = withStyles(theme => ({
 
 const TableTitleCell = withStyles(theme => ({
     head: {
-        color: "#ff9800",
+        color: warningColor,
         fontSize: 16,
     },
 }))(TableCell);
