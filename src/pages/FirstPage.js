@@ -94,6 +94,37 @@ class FirstPage extends React.Component {
                             completionSituation: completionSituation + '%'
                         },
                     ],
+                    topRightData: [{
+                        uuid: 0,
+                        materialName: "乙肝HBSAG金标试纸条（创新停用）",
+                        specification: "10个/袋",
+                        unit: "袋",
+                        warning: "info",
+                        lowerLimit: "123456",
+                        upperLimit: "654321",
+                        stock: "2233456",
+                        stockValue: "123,456,789,000"
+                    }, {
+                        uuid: 1,
+                        materialName: "乙肝HBSAG金标试纸条（创新停用）",
+                        specification: "10个/袋",
+                        unit: "袋",
+                        warning: "warning",
+                        lowerLimit: "123456",
+                        upperLimit: "654321",
+                        stock: "2233456",
+                        stockValue: "123,456,789,000"
+                    }, {
+                        uuid: 2,
+                        materialName: "乙肝HBSAG金标试纸条（创新停用）",
+                        specification: "10个/袋",
+                        unit: "袋",
+                        warning: "danger",
+                        lowerLimit: "123456",
+                        upperLimit: "654321",
+                        stock: "2233456",
+                        stockValue: "123,456,789,000"
+                    }],
                     bottomLeftData: [
                         {
                             title: '在册资产',
@@ -114,6 +145,9 @@ class FirstPage extends React.Component {
                                 {name: "已采", value: '100台'},
                                 {name: "待批", value: '100台'}]
                         }
+                    ],
+                    bottomRightData: [
+                        {uuid: 0, warningProject: "中心库存", warningInformation: "xxx物料库存不足"}
                     ]
                 }
             })
@@ -129,25 +163,25 @@ class FirstPage extends React.Component {
                 <div className={classes.root}>
                     <Grid justify={"center"} container spacing={24}>
                         <Grid item xs={5}>
-                            <BaseContainer title={topLeftContainer.title} footData={footData}>
+                            <BaseContainer headTitle={topLeftContainer.title} footData={footData}>
                                 <TableBase header={topLeftContainer.header} rowData={data.topLeftData}
                                            pageSize={pageSize}/>
                             </BaseContainer>
                         </Grid>
                         <Grid item xs={7}>
-                            <BaseContainer title={topRightContainer.title} footData={footData}>
-                                <TableBase header={topLeftContainer.header} rowData={data.topLeftData}
+                            <BaseContainer headTitle={topRightContainer.title} footTitle={"中心存货价值"} footData={footData}>
+                                <TableBase header={topRightContainer.header} rowData={data.topRightData}
                                            pageSize={pageSize}/>
                             </BaseContainer>
                         </Grid>
                         <Grid item xs={6}>
-                            <BaseContainer title={bottomLeftContainer.title}>
+                            <BaseContainer headTitle={bottomLeftContainer.title}>
                                 <CardContainer cardList={data.bottomLeftData}/>
                             </BaseContainer>
                         </Grid>
                         <Grid item xs={6}>
-                            <BaseContainer title={bottomRightContainer.title}>
-                                <TableBase header={topLeftContainer.header} rowData={data.topLeftData}
+                            <BaseContainer headTitle={bottomRightContainer.title}>
+                                <TableBase header={bottomRightContainer.header} rowData={data.bottomRightData}
                                            pageSize={pageSize}/>
                             </BaseContainer>
                         </Grid>

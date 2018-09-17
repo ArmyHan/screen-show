@@ -26,12 +26,66 @@
     "pageSize": 6
   },
   "topRightContainer": {
-    "title": "中心物资库存"
+    "title": "中心物资库存",
+    "header": [
+      {
+        "name": "materialName",
+        "displayName": "物料名称",
+        "numeric": false
+      },
+      {
+        "name": "specification",
+        "displayName": "规格型号",
+        "numeric": false
+      },
+      {
+        "name": "unit",
+        "displayName": "单位",
+        "numeric": false
+      },
+      {
+        "name": "warning",
+        "displayName": "预警",
+        "numeric": false
+      },
+      {
+        "name": "lowerLimit",
+        "displayName": "下限",
+        "numeric": true
+      },
+      {
+        "name": "upperLimit",
+        "displayName": "上限",
+        "numeric": true
+      },
+      {
+        "name": "stock",
+        "displayName": "库存",
+        "numeric": true
+      },
+      {
+        "name": "stockValue",
+        "displayName": "存货价值",
+        "numeric": true
+      }
+    ]
   },
   "bottomLeftContainer": {
     "title": "资产汇总"
   },
   "bottomRightContainer": {
-    "title": "预警提醒"
+    "title": "预警提醒",
+    "header": [
+      {
+        "name": "warningProject",
+        "displayName": "预警项目",
+        "numeric": false
+      },
+      {
+        "name": "warningInformation",
+        "displayName": "预警信息",
+        "numeric": false
+      }
+    ]
   }
 }

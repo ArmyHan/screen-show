@@ -28,7 +28,7 @@ const CardHead = withStyles(theme => ({
         paddingLeft: 5,
         marginLeft: 20,
         marginRight: 20,
-        marginBottom: 11,
+        marginBottom: 12,
     },
 }))(Typography);
 

@@ -45,10 +45,20 @@ const FootTypography = withStyles(theme => ({
     },
 }))(Typography);
 
+const FootTitle = withStyles(theme => ({
+    item: {
+        color: "#f50057",
+        fontSize: 17,
+        textAlign: "left",
+        fontWeight: "bold",
+    },
+}))(Grid);
+
 const FootLabel = withStyles(theme => ({
     item: {
         color: warningColor,
         textAlign: "right",
+        paddingLeft: 17,
     },
 }))(Grid);
 
@@ -56,6 +66,7 @@ const FootContent = withStyles(theme => ({
     item: {
         color: "#6AACF5",
         textAlign: "left",
+        paddingRight: 5,
     },
 }))(Grid);
 
@@ -71,37 +82,42 @@ class BaseContainer extends React.Component {
         }
     }
 
-    getFootTypography(footData) {
+    static getFootTypography(footData, footTitle) {
         if (footData !== undefined && footData.length > 0) {
-            const footXs = footData > 3 ? 1 : 2;
             return (
                 <FootTypography variant="title" align="center">
                     <Grid container spacing={0}>
-                        {footData.map((item, index) => {
-                            return (
-                                <React.Fragment key={index}>
-                                    <FootLabel item xs={footXs}>
-                                        {item.labelName}
-                                    </FootLabel>
-                                    <FootContent item xs={footXs}>
-                                        {item.value}
-                                    </FootContent>
-                                </React.Fragment>
-                            );
-                        })}
+                        {footTitle !== undefined ? <FootTitle item xs={2}>{footTitle}</FootTitle> : ''}
+                        <Grid item xs={footTitle !== undefined ? 10 : 12}>
+                            <Grid container spacing={0}>
+                                {footData.map((item, index) => {
+                                    return (
+                                        <React.Fragment key={index}>
+                                            <FootLabel item xs={2}>
+                                                {item.labelName}
+                                            </FootLabel>
+                                            <FootContent item xs={2}>
+                                                {item.value}
+                                            </FootContent>
+                                        </React.Fragment>
+                                    );
+                                })}
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </FootTypography>
-            );
+            )
+                ;
         }
     }
 
     render() {
-        const {children, title, footData} = this.props;
+        const {children, headTitle, footTitle, footData} = this.props;
         return (
             <ContainerBorder square={false}>
-                {BaseContainer.getTitleTypography(title)}
+                {BaseContainer.getTitleTypography(headTitle)}
                 {children}
-                {this.getFootTypography(footData)}
+                {BaseContainer.getFootTypography(footData, footTitle)}
             </ContainerBorder>
         );
     }
