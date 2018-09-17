@@ -27,7 +27,7 @@ const footData = [
 class FirstPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {show: false, data: {}, pageSize: 6, pageNumber: 0};
+        this.state = {show: false, data: {}, pageNumber: 0};
     }
 
     componentDidMount() {
@@ -92,7 +92,7 @@ class FirstPage extends React.Component {
                             budgetAmount: budgetAmount,
                             purchaseAmount: purchaseAmount,
                             completionSituation: completionSituation + '%'
-                        },
+                        }
                     ],
                     topRightData: [{
                         uuid: 0,
@@ -156,7 +156,7 @@ class FirstPage extends React.Component {
 
     render() {
         const {classes} = this.props;
-        const {show, data, pageSize, pageNumber} = this.state;
+        const {show, data, pageNumber} = this.state;
 
         return (
             <Fade in={show} timeout={1000}>
@@ -165,13 +165,13 @@ class FirstPage extends React.Component {
                         <Grid item xs={5}>
                             <BaseContainer headTitle={topLeftContainer.title} footData={footData}>
                                 <TableBase header={topLeftContainer.header} rowData={data.topLeftData}
-                                           pageSize={pageSize}/>
+                                           pageSize={topLeftContainer.pageSize}/>
                             </BaseContainer>
                         </Grid>
                         <Grid item xs={7}>
                             <BaseContainer headTitle={topRightContainer.title} footTitle={"中心存货价值"} footData={footData}>
                                 <TableBase header={topRightContainer.header} rowData={data.topRightData}
-                                           pageSize={pageSize}/>
+                                           pageSize={topRightContainer.pageSize}/>
                             </BaseContainer>
                         </Grid>
                         <Grid item xs={6}>
@@ -182,7 +182,7 @@ class FirstPage extends React.Component {
                         <Grid item xs={6}>
                             <BaseContainer headTitle={bottomRightContainer.title}>
                                 <TableBase header={bottomRightContainer.header} rowData={data.bottomRightData}
-                                           pageSize={pageSize}/>
+                                           pageSize={bottomRightContainer.pageSize}/>
                             </BaseContainer>
                         </Grid>
                     </Grid>

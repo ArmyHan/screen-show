@@ -23,7 +23,7 @@
         "numeric": true
       }
     ],
-    "pageSize": 6
+    "pageSize": 8
   },
   "topRightContainer": {
     "title": "中心物资库存",
@@ -68,7 +68,8 @@
         "displayName": "存货价值",
         "numeric": true
       }
-    ]
+    ],
+    "pageSize": 8
   },
   "bottomLeftContainer": {
     "title": "资产汇总"
@@ -86,6 +87,7 @@
         "displayName": "预警信息",
         "numeric": false
       }
-    ]
+    ],
+    "pageSize": 6
   }
 }

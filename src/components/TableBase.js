@@ -136,7 +136,7 @@ class TableBase extends React.Component {
                     );
                 })
             );
-            if (rowData.length < 6) {
+            if (rowData.length < pageSize) {
                 for (let rowIndex = 0; rowIndex < pageSize - rowData.length; rowIndex++) {
                     result.push(<TableContentRow key={rowIndex}>
                         {header.map((headItem, headIndex) => {
